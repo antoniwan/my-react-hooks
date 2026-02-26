@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import type { Theme } from '../../hooks/useTheme'
 import { useAccordion } from '../../hooks/useAccordion'
+import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { Layout } from '../../components/Layout'
 import { CounterDemo } from '../../components/CounterDemo'
 import { ToggleDemo } from '../../components/ToggleDemo'
@@ -22,10 +23,31 @@ export function HookExplorer({ theme, toggleTheme }: HookExplorerProps) {
 
   const selectedHook = HOOKS.find((hook) => hook.id === selectedHookId) ?? HOOKS[0]
   const categories = Array.from(
-    new Map(HOOKS.map((hook) => [hook.category, hook.category])).keys(),
+    new Map(HOOKS.map(hook => [hook.category, hook.category])).keys(),
   )
+
+  const { value: storedCategory, setValue: setStoredCategory } = useLocalStorage<string | null>(
+    'hookExplorer:openCategory',
+    categories[0] ?? null,
+  )
+
   const { openItem: openCategory, isOpen: isCategoryOpen, toggle: toggleCategory } =
-    useAccordion(categories)
+    useAccordion(categories, {
+      initialItem:
+        storedCategory && categories.includes(storedCategory)
+          ? storedCategory
+          : categories[0] ?? null,
+    })
+
+  useEffect(() => {
+    if (!categories.length) return
+
+    if (openCategory && categories.includes(openCategory)) {
+      setStoredCategory(openCategory)
+    } else {
+      setStoredCategory(categories[0] ?? null)
+    }
+  }, [openCategory, categories, setStoredCategory])
 
   return (
     <Layout
