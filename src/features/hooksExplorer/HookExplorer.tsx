@@ -2,6 +2,9 @@ import { useState } from 'react'
 import type { Theme } from '../../hooks/useTheme'
 import { Layout } from '../../components/Layout'
 import { CounterDemo } from '../../components/CounterDemo'
+import { ToggleDemo } from '../../components/ToggleDemo'
+import { LocalStorageDemo } from '../../components/LocalStorageDemo'
+import { PreviousValueDemo } from '../../components/PreviousValueDemo'
 import { ThemeToggleDemo } from '../../components/ThemeToggleDemo'
 import { ScrollDirectionDemo } from '../../components/ScrollDirectionDemo'
 import { SiteMetaDemo } from '../../components/SiteMetaDemo'
@@ -65,6 +68,9 @@ export function HookExplorer({ theme, toggleTheme }: HookExplorerProps) {
       }
     >
       {selectedHook?.id === 'useCounter' && <CounterDemo />}
+      {selectedHook?.id === 'useToggle' && <ToggleDemo />}
+      {selectedHook?.id === 'useLocalStorage' && <LocalStorageDemo />}
+      {selectedHook?.id === 'usePrevious' && <PreviousValueDemo />}
       {selectedHook?.id === 'useTheme' && (
         <ThemeToggleDemo theme={theme} toggleTheme={toggleTheme} />
       )}

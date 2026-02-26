@@ -11,6 +11,21 @@ export const HOOKS: HookExample[] = [
     description: 'Numeric state with increment, decrement, reset, and optional bounds.',
   },
   {
+    id: 'useToggle',
+    name: 'useToggle',
+    description: 'Boolean state with helpers for toggling, turning on, and turning off.',
+  },
+  {
+    id: 'useLocalStorage',
+    name: 'useLocalStorage',
+    description: 'Synchronize a piece of state with localStorage using JSON.',
+  },
+  {
+    id: 'usePrevious',
+    name: 'usePrevious',
+    description: 'Track the previous value of a prop, state, or derived value.',
+  },
+  {
     id: 'useTheme',
     name: 'useTheme',
     description: 'Light/dark theme toggle with persistence and system preference support.',
