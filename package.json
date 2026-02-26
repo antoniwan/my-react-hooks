@@ -1,8 +1,14 @@
 {
   "name": "my-react-hooks",
   "private": true,
-  "version": "0.9.0",
+  "version": "1.0.0",
   "type": "module",
+  "author": "Antonio Rodriguez Martinez",
+  "homepage": "https://myreacthooks.antoniwan.online/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/antoniwan/my-react-hooks"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",

@@ -2,7 +2,7 @@
 const VERSION = import.meta.env.VITE_SITE_VERSION ?? '0.0.0'
 
 const REPO_URL =
-  import.meta.env.VITE_SITE_REPO_URL ?? 'https://github.com/zombi/my-react-hooks'
+  import.meta.env.VITE_SITE_REPO_URL ?? 'https://github.com/antoniwan/my-react-hooks'
 
 export function useSiteMeta() {
   return {
