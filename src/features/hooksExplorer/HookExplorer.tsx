@@ -8,6 +8,7 @@ import { PreviousValueDemo } from '../../components/PreviousValueDemo'
 import { ThemeToggleDemo } from '../../components/ThemeToggleDemo'
 import { ScrollDirectionDemo } from '../../components/ScrollDirectionDemo'
 import { SiteMetaDemo } from '../../components/SiteMetaDemo'
+import { ContextSignalDemo } from '../../components/ContextSignalDemo'
 import { HOOKS } from './hooksConfig'
 
 type HookExplorerProps = {
@@ -76,6 +77,7 @@ export function HookExplorer({ theme, toggleTheme }: HookExplorerProps) {
       )}
       {selectedHook?.id === 'useScrollDirection' && <ScrollDirectionDemo />}
       {selectedHook?.id === 'useSiteMeta' && <SiteMetaDemo />}
+      {selectedHook?.id === 'useUserContext' && <ContextSignalDemo />}
     </Layout>
   )
 }

@@ -40,5 +40,11 @@ export const HOOKS: HookExample[] = [
     name: 'useSiteMeta',
     description: 'Reads site metadata like version and repo URL from build-time config.',
   },
+  {
+    id: 'useUserContext',
+    name: 'useUserContext',
+    description:
+      'Aggregates geo, weather, language, device, session, and time-of-day signals.',
+  },
 ]
 
