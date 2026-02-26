@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import type { Theme } from '../../hooks/useTheme'
+import { useAccordion } from '../../hooks/useAccordion'
 import { Layout } from '../../components/Layout'
 import { CounterDemo } from '../../components/CounterDemo'
 import { ToggleDemo } from '../../components/ToggleDemo'
@@ -23,6 +24,8 @@ export function HookExplorer({ theme, toggleTheme }: HookExplorerProps) {
   const categories = Array.from(
     new Map(HOOKS.map((hook) => [hook.category, hook.category])).keys(),
   )
+  const { openItem: openCategory, isOpen: isCategoryOpen, toggle: toggleCategory } =
+    useAccordion(categories)
 
   return (
     <Layout
@@ -52,27 +55,43 @@ export function HookExplorer({ theme, toggleTheme }: HookExplorerProps) {
       sidebar={
         <nav className="hook-list">
           <h2 className="hook-list-title">Hooks</h2>
-          {categories.map((category) => (
-            <section key={category} className="hook-list-section">
-              <h3 className="hook-list-section-title">{category}</h3>
-              <ul>
-                {HOOKS.filter((hook) => hook.category === category).map((hook) => (
-                  <li key={hook.id}>
-                    <button
-                      type="button"
-                      className={
-                        hook.id === selectedHookId ? 'hook-list-item is-active' : 'hook-list-item'
-                      }
-                      onClick={() => setSelectedHookId(hook.id)}
-                    >
-                      <span className="hook-name">{hook.name}</span>
-                      <span className="hook-description">{hook.description}</span>
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ))}
+          {categories.map((category) => {
+            const open = isCategoryOpen(category)
+
+            return (
+              <section key={category} className="hook-list-section">
+                <button
+                  type="button"
+                  className={open ? 'hook-list-section-header is-open' : 'hook-list-section-header'}
+                  onClick={() => toggleCategory(category)}
+                  aria-expanded={open}
+                >
+                  <span className="hook-list-section-chevron" aria-hidden="true">
+                    {open ? '▾' : '▸'}
+                  </span>
+                  <span className="hook-list-section-title">{category}</span>
+                </button>
+                {open && (
+                  <ul>
+                    {HOOKS.filter((hook) => hook.category === category).map((hook) => (
+                      <li key={hook.id}>
+                        <button
+                          type="button"
+                          className={
+                            hook.id === selectedHookId ? 'hook-list-item is-active' : 'hook-list-item'
+                          }
+                          onClick={() => setSelectedHookId(hook.id)}
+                        >
+                          <span className="hook-name">{hook.name}</span>
+                          <span className="hook-description">{hook.description}</span>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+            )
+          })}
         </nav>
       }
     >

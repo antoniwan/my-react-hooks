@@ -120,8 +120,42 @@
   margin-bottom: 0.75rem;
 }
 
+.hook-list-section-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.4rem;
+  padding: 0.15rem 0.3rem;
+  background: transparent;
+  border-radius: 0.35rem;
+  border: none;
+}
+
+.hook-list-section-header:hover {
+  background-color: var(--accent-soft);
+}
+
+.hook-list-section-header.is-open {
+  background-color: rgba(148, 163, 184, 0.16);
+}
+
+.hook-list-section-header.is-open .hook-list-section-title {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.hook-list-section-header.is-open .hook-list-section-chevron {
+  opacity: 1;
+}
+
+.hook-list-section-chevron {
+  font-size: 0.7rem;
+  opacity: 0.75;
+}
+
 .hook-list-section-title {
-  margin: 0.1rem 0 0.25rem;
+  margin: 0;
   font-size: 0.8rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;

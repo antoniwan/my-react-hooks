@@ -149,13 +149,27 @@ function useDeviceType(enabled: boolean | undefined): UserContext['device'] {
 }
 
 const SESSION_STORAGE_KEY = 'user_session_count'
+const SESSION_PAGE_LOAD_KEY = 'user_session_last_page_load_id'
+const SESSION_PAGE_LOAD_ID =
+  typeof crypto !== 'undefined' && 'randomUUID' in crypto
+    ? crypto.randomUUID()
+    : `${Date.now()}:${Math.random()}`
 
 function useSessionCount(enabled: boolean | undefined): {
   sessionCount: number
   loading: boolean
   error: string | null
 } {
-  const [sessionCount, setSessionCount] = useState(0)
+  const [sessionCount, setSessionCount] = useState(() => {
+    if (typeof window === 'undefined') return 0
+
+    try {
+      const raw = window.localStorage.getItem(SESSION_STORAGE_KEY)
+      return raw ? Number.parseInt(raw, 10) || 0 : 0
+    } catch {
+      return 0
+    }
+  })
   const [loading, setLoading] = useState<boolean>(!!enabled)
   const [error, setError] = useState<string | null>(null)
 
@@ -173,9 +187,18 @@ function useSessionCount(enabled: boolean | undefined): {
     try {
       const raw = window.localStorage.getItem(SESSION_STORAGE_KEY)
       const current = raw ? Number.parseInt(raw, 10) || 0 : 0
+      const lastPageId = window.localStorage.getItem(SESSION_PAGE_LOAD_KEY)
+
+      if (lastPageId === SESSION_PAGE_LOAD_ID) {
+        setSessionCount(current)
+        setLoading(false)
+        return
+      }
+
       const next = current + 1
 
       window.localStorage.setItem(SESSION_STORAGE_KEY, String(next))
+      window.localStorage.setItem(SESSION_PAGE_LOAD_KEY, SESSION_PAGE_LOAD_ID)
       setSessionCount(next)
       setLoading(false)
     } catch (err) {
