@@ -9,6 +9,11 @@ export interface UserContext {
   device: 'mobile' | 'tablet' | 'desktop'
   isLoading: boolean
   error: string | null
+  meta?: UserContextMeta
+}
+
+export type UserContextMeta = {
+  all: Omit<UserContext, 'meta'>
 }
 
 export type UserContextOptions = {
@@ -20,6 +25,7 @@ export type UserContextOptions = {
   enableDevice?: boolean
   enableLanguage?: boolean
   ipApiEndpoint?: string
+  includeMeta?: boolean
 }
 
 export type InternalState = UserContext
@@ -460,8 +466,7 @@ export function useUserContextInternal(options?: UserContextOptions): InternalSt
   }, [geoError, weatherError, sessionError])
 
   const isLoading = loadingGeo || loadingWeather || loadingSession
-
-  return {
+  const base: Omit<UserContext, 'meta'> = {
     geo: geo
       ? {
           country: geo.country,
@@ -477,5 +482,18 @@ export function useUserContextInternal(options?: UserContextOptions): InternalSt
     isLoading,
     error,
   }
+
+  if (options?.includeMeta) {
+    const all: Omit<UserContext, 'meta'> = base
+
+    return {
+      ...base,
+      meta: {
+        all,
+      },
+    }
+  }
+
+  return base
 }
 

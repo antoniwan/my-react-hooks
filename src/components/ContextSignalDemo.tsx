@@ -13,9 +13,10 @@ export function ContextSignalDemo({ weatherApiKey }: ContextSignalDemoProps) {
     enableSession: true,
     enableDevice: true,
     enableLanguage: true,
+    includeMeta: true,
   })
 
-  const { geo, timeOfDay, weather, language, sessionCount, device, isLoading, error } =
+  const { geo, timeOfDay, weather, language, sessionCount, device, isLoading, error, meta } =
     context
 
   const hasWeatherConfigured = Boolean(weatherApiKey)
@@ -114,6 +115,15 @@ export function ContextSignalDemo({ weatherApiKey }: ContextSignalDemoProps) {
           <span className="context-signal-value">{error ?? 'None'}</span>
         </div>
       </div>
+
+      {meta?.all && (
+        <div className="context-meta">
+          <h3 className="context-meta-title">Full context object (debug)</h3>
+          <pre className="context-meta-pre">
+            {JSON.stringify(meta.all, null, 2)}
+          </pre>
+        </div>
+      )}
     </div>
   )
 }

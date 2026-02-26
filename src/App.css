@@ -241,6 +241,27 @@
   font-weight: 500;
 }
 
+.context-meta {
+  margin-top: 1rem;
+  padding: 0.75rem 0.85rem;
+  border-radius: 0.75rem;
+  border: 1px dashed var(--border-subtle);
+  background-color: var(--bg-elevated);
+}
+
+.context-meta-title {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.context-meta-pre {
+  margin: 0.5rem 0 0;
+  max-height: 260px;
+  overflow: auto;
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
 .theme-toggle {
   display: inline-flex;
   align-items: center;
