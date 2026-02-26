@@ -1,73 +1,88 @@
-# React + TypeScript + Vite
+## my-react-hooks
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a small collection of React hooks with a simple UI for exploring them. It uses React, TypeScript, and Vite.
 
-Currently, two official plugins are available:
+### Hooks included
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **State and utilities**
+  - `useCounter`: numeric state with increment, decrement, reset, and optional bounds.
+  - `useToggle`: boolean state with helpers for toggling, forcing on, and forcing off.
+  - `usePrevious`: track the previous value of a prop or piece of state.
+  - `useLocalStorage`: state that is mirrored into `localStorage` under a given key.
 
-## React Compiler
+- **Browser and environment**
+  - `useTheme`: light/dark theme state stored in `localStorage` and applied to the document.
+  - `useScrollDirection`: detect scroll direction and whether the page is at the top or bottom.
+  - `useSiteMeta`: expose build‑time site metadata (version and repository URL).
 
-The React Compiler is currently not compatible with SWC. See [this issue](https://github.com/vitejs/vite-plugin-react/issues/428) for tracking the progress.
+- **Context and aggregates**
+  - `useUserContext`: aggregate of geo, weather, language, device, session count, and time of day, available directly or through a context provider.
 
-## Expanding the ESLint configuration
+The sidebar groups hooks by these categories and uses an accordion that keeps only one section open at a time. The last open section is remembered across reloads.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### Running the project
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+Use your preferred package manager (for example `pnpm`, `npm`, or `yarn`).
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+- **Install dependencies**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+  ```bash
+  pnpm install
+  ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **Start the dev server**
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+  ```bash
+  pnpm dev
+  ```
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- **Build for production**
+
+  ```bash
+  pnpm build
+  ```
+
+- **Preview the production build**
+
+  ```bash
+  pnpm preview
+  ```
+
+If you use `npm` or `yarn`, replace `pnpm` with your chosen tool.
+
+### Linting and formatting
+
+The project uses the ESLint flat config and Prettier.
+
+- **Lint**
+
+  ```bash
+  pnpm lint
+  ```
+
+- **Lint with fixes**
+
+  ```bash
+  pnpm lint:fix
+  ```
+
+- **Format with Prettier**
+
+  ```bash
+  pnpm format
+  ```
+
+- **Check formatting**
+
+  ```bash
+  pnpm format:check
+  ```
+
+### Environment variables
+
+Some hooks use optional environment configuration. See `.env.example` for the available variables. If you do not provide them, the related features either stay disabled or fall back to safe defaults.
+
+### Approach and principles
+
+For a short description of how the hooks are structured and why certain choices were made, see [PRINCIPLES.md](./PRINCIPLES.md).
+
