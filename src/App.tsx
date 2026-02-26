@@ -1,4 +1,5 @@
 import './App.css'
+import { Analytics } from '@vercel/analytics/react'
 import { SiteFooter } from './components/SiteFooter'
 import { HookExplorer } from './features/hooksExplorer'
 import { useTheme } from './hooks/useTheme'
@@ -21,6 +22,7 @@ function App() {
         visible={showFooter}
         links={[]}
       />
+      <Analytics />
     </>
   )
 }
