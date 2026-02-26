@@ -5,8 +5,10 @@ import { CounterDemo } from './components/CounterDemo'
 import { ThemeToggleDemo } from './components/ThemeToggleDemo'
 import { ScrollDirectionDemo } from './components/ScrollDirectionDemo'
 import { SiteFooter } from './components/SiteFooter'
+import { SiteMetaDemo } from './components/SiteMetaDemo.tsx'
 import { useTheme } from './hooks/useTheme'
 import { useScrollDirection } from './hooks/useScrollDirection'
+import { useSiteMeta } from './hooks/useSiteMeta'
 
 type HookExample = {
   id: string
@@ -30,19 +32,22 @@ const HOOKS: HookExample[] = [
     name: 'useScrollDirection',
     description: 'Small helper for scroll-aware UI, like showing/hiding a footer.',
   },
+  {
+    id: 'useSiteMeta',
+    name: 'useSiteMeta',
+    description: 'Reads site metadata like version and repo URL from build-time config.',
+  },
 ]
 
 function App() {
   const [selectedHookId, setSelectedHookId] = useState<string>(HOOKS[0]?.id ?? 'useCounter')
   const { theme, toggleTheme } = useTheme()
   const { direction, atTop, atBottom } = useScrollDirection({ threshold: 10 })
+  const { version, repoUrl } = useSiteMeta()
 
   const selectedHook = HOOKS.find((hook) => hook.id === selectedHookId) ?? HOOKS[0]
 
   const showFooter = atBottom || atTop || direction === 'up'
-
-  const VERSION = 'v0.1.0'
-  const REPO_URL = 'https://github.com/your-username/my-react-hooks'
 
   return (
     <>
@@ -95,11 +100,12 @@ function App() {
           <ThemeToggleDemo theme={theme} toggleTheme={toggleTheme} />
         )}
         {selectedHook?.id === 'useScrollDirection' && <ScrollDirectionDemo />}
+        {selectedHook?.id === 'useSiteMeta' && <SiteMetaDemo />}
       </Layout>
 
       <SiteFooter
-        version={VERSION}
-        repoUrl={REPO_URL}
+        version={version}
+        repoUrl={repoUrl}
         visible={showFooter}
         links={[]}
       />
