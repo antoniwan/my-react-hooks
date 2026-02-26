@@ -1,7 +1,15 @@
 import { useEffect, useMemo, useState } from 'react'
 
 export interface UserContext {
-  geo: { country: string; region: string; city: string } | null
+  geo:
+    | {
+        country: string
+        region: string
+        city: string
+        latitude?: number
+        longitude?: number
+      }
+    | null
   timeOfDay: 'morning' | 'afternoon' | 'evening' | 'night'
   weather: { condition: string; temp: number; unit: 'C' | 'F' } | null
   language: string
@@ -217,6 +225,29 @@ function useSessionCount(enabled: boolean | undefined): {
   return { sessionCount, loading, error }
 }
 
+async function getNativePosition(): Promise<GeolocationPosition | null> {
+  if (typeof navigator === 'undefined' || !('geolocation' in navigator)) {
+    return null
+  }
+
+  try {
+    const position = await new Promise<GeolocationPosition>((resolve, reject) => {
+      navigator.geolocation.getCurrentPosition(
+        resolve,
+        reject,
+        {
+          maximumAge: 5 * 60 * 1000,
+          timeout: 10_000,
+        },
+      )
+    })
+
+    return position
+  } catch {
+    return null
+  }
+}
+
 function mapIpapiToGeo(data: IpapiResponse | null): GeoInternal {
   if (!data) return null
 
@@ -262,10 +293,37 @@ function useGeoFromIp(
 
     const endpoint = options?.ipApiEndpoint ?? 'https://ipapi.co/json/'
     const controller = new AbortController()
+    let cancelled = false
 
     const run = async () => {
       try {
         setLoading(true)
+
+        const nativePosition = await getNativePosition()
+
+        if (nativePosition) {
+          const mapped: GeoInternal = {
+            country: '',
+            region: '',
+            city: '',
+            latitude: nativePosition.coords.latitude,
+            longitude: nativePosition.coords.longitude,
+          }
+
+          geoCache = mapped
+          geoErrorCache = null
+
+          if (!cancelled) {
+            setGeo(mapped)
+            setError(null)
+          }
+
+          return
+        }
+
+        if (controller.signal.aborted) {
+          return
+        }
 
         const response = await fetch(endpoint, {
           signal: controller.signal,
@@ -283,15 +341,19 @@ function useGeoFromIp(
 
           geoCache = null
           geoErrorCache = friendly
-          setGeo(null)
-          setError(friendly)
+          if (!cancelled) {
+            setGeo(null)
+            setError(friendly)
+          }
           return
         }
 
         geoCache = mapped
         geoErrorCache = null
-        setGeo(mapped)
-        setError(null)
+        if (!cancelled) {
+          setGeo(mapped)
+          setError(null)
+        }
       } catch (err) {
         if ((err as Error).name === 'AbortError') return
 
@@ -301,10 +363,14 @@ function useGeoFromIp(
 
         geoCache = null
         geoErrorCache = friendly
-        setGeo(null)
-        setError(friendly)
+        if (!cancelled) {
+          setGeo(null)
+          setError(friendly)
+        }
       } finally {
-        setLoading(false)
+        if (!cancelled) {
+          setLoading(false)
+        }
       }
     }
 
@@ -319,6 +385,7 @@ function useGeoFromIp(
     }
 
     return () => {
+      cancelled = true
       controller.abort()
     }
   }, [options?.enableGeo, options?.ipApiEndpoint])
@@ -480,6 +547,8 @@ export function useUserContextInternal(options?: UserContextOptions): InternalSt
           country: geo.country,
           region: geo.region,
           city: geo.city,
+          latitude: geo.latitude,
+          longitude: geo.longitude,
         }
       : null,
     timeOfDay,
