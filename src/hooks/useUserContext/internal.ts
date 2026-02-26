@@ -224,8 +224,6 @@ function mapIpapiToGeo(data: IpapiResponse | null): GeoInternal {
   const region = data.region || ''
   const city = data.city || ''
 
-  if (!country && !region && !city) return null
-
   return {
     country,
     region,
@@ -279,6 +277,16 @@ function useGeoFromIp(
 
         const data = (await response.json()) as IpapiResponse
         const mapped = mapIpapiToGeo(data)
+
+        if (!mapped) {
+          const friendly = 'Geo lookup returned no location data for this IP'
+
+          geoCache = null
+          geoErrorCache = friendly
+          setGeo(null)
+          setError(friendly)
+          return
+        }
 
         geoCache = mapped
         geoErrorCache = null
