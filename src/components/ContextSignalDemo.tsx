@@ -18,6 +18,18 @@ export function ContextSignalDemo({ weatherApiKey }: ContextSignalDemoProps) {
   const { geo, timeOfDay, weather, language, sessionCount, device, isLoading, error } =
     context
 
+  const hasWeatherConfigured = Boolean(weatherApiKey)
+  const locationLabel = geo
+    ? [geo.city, geo.region, geo.country].filter(Boolean).join(', ')
+    : 'Unknown location'
+  const weatherLabel = weather
+    ? `${Math.round(weather.temp)}°${weather.unit} · ${weather.condition}`
+    : hasWeatherConfigured
+      ? isLoading
+        ? 'Loading…'
+        : 'Unavailable'
+      : 'Disabled (no API key)'
+
   return (
     <div className="hook-demo">
       <div className="hook-demo-header">
@@ -28,10 +40,39 @@ export function ContextSignalDemo({ weatherApiKey }: ContextSignalDemoProps) {
         </p>
       </div>
 
+      <div className="context-summary">
+        <div className="context-summary-pills">
+          <span
+            className={
+              isLoading ? 'context-pill context-pill--neutral' : 'context-pill context-pill--success'
+            }
+          >
+            {isLoading ? 'Loading signals…' : 'Signals ready'}
+          </span>
+          {error && (
+            <span className="context-pill context-pill--error" aria-live="polite">
+              Error
+            </span>
+          )}
+          {!hasWeatherConfigured && (
+            <span className="context-pill context-pill--muted">
+              Weather disabled (no API key)
+            </span>
+          )}
+        </div>
+        <p className="context-summary-text">
+          {geo
+            ? `Looks like you're in ${locationLabel}. It's currently ${timeOfDay}.`
+            : 'We will infer your location and other signals as the data loads.'}
+        </p>
+      </div>
+
       <div className="context-signal-grid">
         <div className="context-signal-row">
-          <span className="context-signal-label">Loading</span>
-          <span className="context-signal-value">{isLoading ? 'Yes' : 'No'}</span>
+          <span className="context-signal-label">Status</span>
+          <span className="context-signal-value">
+            {isLoading ? 'Loading…' : error ? 'Error' : 'OK'}
+          </span>
         </div>
 
         <div className="context-signal-row">
@@ -57,18 +98,14 @@ export function ContextSignalDemo({ weatherApiKey }: ContextSignalDemoProps) {
         <div className="context-signal-row">
           <span className="context-signal-label">Geo</span>
           <span className="context-signal-value">
-            {geo ? `${geo.city || 'Unknown city'}, ${geo.region || 'Unknown region'}, ${geo.country || 'Unknown country'}` : 'Unknown'}
+            {locationLabel}
           </span>
         </div>
 
         <div className="context-signal-row">
           <span className="context-signal-label">Weather</span>
           <span className="context-signal-value">
-            {weather
-              ? `${Math.round(weather.temp)}°${weather.unit} · ${weather.condition}`
-              : weatherApiKey
-                ? 'Unknown'
-                : 'Disabled (no API key)'}
+            {weatherLabel}
           </span>
         </div>
 

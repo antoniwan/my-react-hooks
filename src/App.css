@@ -116,6 +116,18 @@
   font-size: 0.95rem;
 }
 
+.hook-list-section {
+  margin-bottom: 0.75rem;
+}
+
+.hook-list-section-title {
+  margin: 0.1rem 0 0.25rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
 .counter-demo-value {
   font-size: 2.5rem;
   font-weight: 700;
@@ -126,6 +138,73 @@
   display: flex;
   justify-content: center;
   gap: 0.75rem;
+}
+
+.context-summary {
+  padding: 0.75rem 0.85rem;
+  border-radius: 0.75rem;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-elevated);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.context-summary-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.context-pill {
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+}
+
+.context-pill--success {
+  background-color: var(--accent-soft);
+}
+
+.context-pill--error {
+  border-color: #fecaca;
+  color: #fecaca;
+}
+
+.context-pill--muted,
+.context-pill--neutral {
+  opacity: 0.85;
+}
+
+.context-summary-text {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.context-signal-grid {
+  margin-top: 0.75rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.5rem 1rem;
+}
+
+.context-signal-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+}
+
+.context-signal-label {
+  color: var(--text-muted);
+}
+
+.context-signal-value {
+  text-align: right;
+  font-weight: 500;
 }
 
 .theme-toggle {

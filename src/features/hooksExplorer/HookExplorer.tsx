@@ -20,6 +20,9 @@ export function HookExplorer({ theme, toggleTheme }: HookExplorerProps) {
   const [selectedHookId, setSelectedHookId] = useState<string>(HOOKS[0]?.id ?? 'useCounter')
 
   const selectedHook = HOOKS.find((hook) => hook.id === selectedHookId) ?? HOOKS[0]
+  const categories = Array.from(
+    new Map(HOOKS.map((hook) => [hook.category, hook.category])).keys(),
+  )
 
   return (
     <Layout
@@ -49,22 +52,27 @@ export function HookExplorer({ theme, toggleTheme }: HookExplorerProps) {
       sidebar={
         <nav className="hook-list">
           <h2 className="hook-list-title">Hooks</h2>
-          <ul>
-            {HOOKS.map((hook) => (
-              <li key={hook.id}>
-                <button
-                  type="button"
-                  className={
-                    hook.id === selectedHookId ? 'hook-list-item is-active' : 'hook-list-item'
-                  }
-                  onClick={() => setSelectedHookId(hook.id)}
-                >
-                  <span className="hook-name">{hook.name}</span>
-                  <span className="hook-description">{hook.description}</span>
-                </button>
-              </li>
-            ))}
-          </ul>
+          {categories.map((category) => (
+            <section key={category} className="hook-list-section">
+              <h3 className="hook-list-section-title">{category}</h3>
+              <ul>
+                {HOOKS.filter((hook) => hook.category === category).map((hook) => (
+                  <li key={hook.id}>
+                    <button
+                      type="button"
+                      className={
+                        hook.id === selectedHookId ? 'hook-list-item is-active' : 'hook-list-item'
+                      }
+                      onClick={() => setSelectedHookId(hook.id)}
+                    >
+                      <span className="hook-name">{hook.name}</span>
+                      <span className="hook-description">{hook.description}</span>
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          ))}
         </nav>
       }
     >
