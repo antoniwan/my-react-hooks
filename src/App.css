@@ -9,9 +9,9 @@
 
 .app-header {
   padding: 1rem 1.25rem;
-  border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .header-inner {
@@ -23,7 +23,7 @@
 
 .header-subtitle {
   margin: 0.25rem 0 0;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-muted);
   font-size: 0.95rem;
 }
 
@@ -36,16 +36,11 @@
 
 .app-sidebar {
   padding: 1rem;
-  border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-right: 1px solid var(--border-subtle);
 }
 
 .app-main {
   padding: 1.25rem 1.5rem;
-  border-radius: 0.75rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .hook-list {
@@ -59,7 +54,7 @@
   font-size: 0.9rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: rgba(255, 255, 255, 0.65);
+  color: var(--text-muted);
 }
 
 .hook-list ul {
@@ -84,13 +79,13 @@
 }
 
 .hook-list-item:hover {
-  border-color: rgba(100, 108, 255, 0.7);
-  background: rgba(100, 108, 255, 0.08);
+  border-color: var(--accent);
+  background: var(--accent-soft);
 }
 
 .hook-list-item.is-active {
-  border-color: rgba(100, 108, 255, 1);
-  background: rgba(100, 108, 255, 0.15);
+  border-color: var(--accent);
+  background: var(--accent-soft-strong);
 }
 
 .hook-name {
@@ -100,7 +95,7 @@
 
 .hook-description {
   font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-muted);
 }
 
 .hook-demo {
@@ -116,7 +111,7 @@
 
 .hook-demo-description {
   margin: 0.25rem 0 0;
-  color: rgba(255, 255, 255, 0.75);
+  color: var(--text-muted);
   font-size: 0.95rem;
 }
 
@@ -130,6 +125,21 @@
   display: flex;
   justify-content: center;
   gap: 0.75rem;
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding-inline: 0.8rem;
+}
+
+.theme-toggle-icon {
+  font-size: 0.9rem;
+}
+
+.theme-toggle-label {
+  font-size: 0.85rem;
 }
 
 @media (max-width: 768px) {

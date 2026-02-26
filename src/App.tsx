@@ -2,6 +2,8 @@ import { useState } from 'react'
 import './App.css'
 import { Layout } from './components/Layout'
 import { CounterDemo } from './components/CounterDemo'
+import { ThemeToggleDemo } from './components/ThemeToggleDemo'
+import { useTheme } from './hooks/useTheme'
 
 type HookExample = {
   id: string
@@ -15,10 +17,16 @@ const HOOKS: HookExample[] = [
     name: 'useCounter',
     description: 'Numeric state with increment, decrement, reset, and optional bounds.',
   },
+  {
+    id: 'useTheme',
+    name: 'useTheme',
+    description: 'Light/dark theme toggle with persistence and system preference support.',
+  },
 ]
 
 function App() {
   const [selectedHookId, setSelectedHookId] = useState<string>(HOOKS[0]?.id ?? 'useCounter')
+  const { theme, toggleTheme } = useTheme()
 
   const selectedHook = HOOKS.find((hook) => hook.id === selectedHookId) ?? HOOKS[0]
 
@@ -30,6 +38,19 @@ function App() {
             <h1>My React Hooks</h1>
             <p className="header-subtitle">Small, focused hooks for learning and experiments.</p>
           </div>
+          <button
+            type="button"
+            className="theme-toggle"
+            onClick={toggleTheme}
+            aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+          >
+            <span className="theme-toggle-icon" aria-hidden="true">
+              {theme === 'dark' ? '☾' : '☼'}
+            </span>
+            <span className="theme-toggle-label">
+              {theme === 'dark' ? 'Dark' : 'Light'}
+            </span>
+          </button>
         </div>
       }
       sidebar={
@@ -55,6 +76,7 @@ function App() {
       }
     >
       {selectedHook?.id === 'useCounter' && <CounterDemo />}
+      {selectedHook?.id === 'useTheme' && <ThemeToggleDemo theme={theme} toggleTheme={toggleTheme} />}
     </Layout>
   )
 }
