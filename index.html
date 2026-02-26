@@ -4,9 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>
-      React Hooks Explorer | my-react-hooks by Antonio Rodriguez Martinez
-    </title>
+    <title>My React Hooks | React Hooks Explorer by Antonio Rodriguez Martinez</title>
     <meta
       name="description"
       content="A small collection of reusable React hooks with a simple UI for exploring them, including useCounter, useToggle, useLocalStorage, useTheme, useScrollDirection, and useUserContext."
@@ -14,41 +12,88 @@
     <meta name="robots" content="index,follow" />
     <meta name="author" content="Antonio Rodriguez Martinez" />
     <meta name="theme-color" content="#0f172a" />
+    <link rel="canonical" href="https://my-react-hooks.antoniwan.online/" />
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta
-      property="og:title"
-      content="React Hooks Explorer | my-react-hooks by Antonio Rodriguez Martinez"
-    />
+    <meta property="og:site_name" content="My React Hooks" />
+    <meta property="og:title" content="My React Hooks | React Hooks Explorer by Antonio Rodriguez Martinez" />
     <meta
       property="og:description"
       content="Browse and try a collection of reusable React hooks with a small but polished demo UI."
     />
-    <meta
-      property="og:url"
-      content="https://antoniwan.online/my-react-hooks"
-    />
-    <meta name="twitter:card" content="summary" />
-    <meta
-      name="twitter:title"
-      content="React Hooks Explorer | my-react-hooks by Antonio Rodriguez Martinez"
-    />
+    <meta property="og:url" content="https://my-react-hooks.antoniwan.online/" />
+    <meta property="og:image" content="https://my-react-hooks.antoniwan.online/og.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:locale" content="en" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@antoniwan" />
+    <meta name="twitter:title" content="My React Hooks | React Hooks Explorer by Antonio Rodriguez Martinez" />
     <meta
       name="twitter:description"
       content="Browse and try a collection of reusable React hooks with a small but polished demo UI."
     />
-    <link rel="canonical" href="https://antoniwan.online/my-react-hooks" />
+    <meta name="twitter:image" content="https://my-react-hooks.antoniwan.online/og.png" />
+
+    <!-- Structured data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "WebSite",
-        "name": "my-react-hooks",
-        "url": "https://antoniwan.online/my-react-hooks",
-        "description": "A small collection of reusable React hooks with a simple UI for exploring them.",
-        "author": {
-          "@type": "Person",
-          "name": "Antonio Rodriguez Martinez",
-          "url": "https://github.com/antoniwan"
-        }
+        "@graph": [
+          {
+            "@type": "Person",
+            "@id": "https://my-react-hooks.antoniwan.online/#author",
+            "name": "Antonio Rodriguez Martinez",
+            "url": "https://github.com/antoniwan",
+            "sameAs": [
+              "https://github.com/antoniwan",
+              "https://twitter.com/antoniwan"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://my-react-hooks.antoniwan.online/#website",
+            "name": "My React Hooks",
+            "url": "https://my-react-hooks.antoniwan.online/",
+            "description": "A small collection of reusable React hooks with a simple UI for exploring them.",
+            "author": { "@id": "https://my-react-hooks.antoniwan.online/#author" },
+            "inLanguage": "en",
+            "potentialAction": {
+              "@type": "ReadAction",
+              "target": "https://my-react-hooks.antoniwan.online/"
+            }
+          },
+          {
+            "@type": "WebApplication",
+            "@id": "https://my-react-hooks.antoniwan.online/#webapp",
+            "name": "My React Hooks",
+            "url": "https://my-react-hooks.antoniwan.online/",
+            "description": "Browse and try a collection of reusable React hooks: useCounter, useToggle, useLocalStorage, useTheme, useScrollDirection, useSiteMeta, useUserContext. Light/dark theme, scroll-aware UI, and build-time metadata.",
+            "applicationCategory": "DeveloperApplication",
+            "author": { "@id": "https://my-react-hooks.antoniwan.online/#author" },
+            "browserRequirements": "Requires JavaScript. Requires a modern browser with ES module support.",
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "USD"
+            }
+          },
+          {
+            "@type": "SoftwareSourceCode",
+            "@id": "https://my-react-hooks.antoniwan.online/#source",
+            "name": "my-react-hooks",
+            "description": "Reusable React hooks with demos: state (useCounter, useToggle, usePrevious), persistence (useLocalStorage, useTheme), browser (useScrollDirection), and context (useSiteMeta, useUserContext).",
+            "codeRepository": "https://github.com/antoniwan/my-react-hooks",
+            "programmingLanguage": {
+              "@type": "ComputerLanguage",
+              "name": "TypeScript"
+            },
+            "author": { "@id": "https://my-react-hooks.antoniwan.online/#author" }
+          }
+        ]
       }
     </script>
   </head>
