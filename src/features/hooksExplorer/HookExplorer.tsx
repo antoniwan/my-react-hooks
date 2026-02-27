@@ -3,6 +3,7 @@ import type { Theme } from '../../hooks/useTheme'
 import { useAccordion } from '../../hooks/useAccordion'
 import { useLocalStorage } from '../../hooks/useLocalStorage'
 import { Layout } from '../../components/Layout'
+import { AppHeader } from '../../components/AppHeader'
 import { CounterDemo } from '../../components/CounterDemo'
 import { ToggleDemo } from '../../components/ToggleDemo'
 import { LocalStorageDemo } from '../../components/LocalStorageDemo'
@@ -16,9 +17,16 @@ import { HOOKS } from './hooksConfig'
 type HookExplorerProps = {
   theme: Theme
   toggleTheme: () => void
+  activePage: 'hooks' | 'principles' | 'roadmap'
+  onNavigate: (page: 'hooks' | 'principles' | 'roadmap') => void
 }
 
-export function HookExplorer({ theme, toggleTheme }: HookExplorerProps) {
+export function HookExplorer({
+  theme,
+  toggleTheme,
+  activePage,
+  onNavigate,
+}: HookExplorerProps) {
   const [selectedHookId, setSelectedHookId] = useState<string>(HOOKS[0]?.id ?? 'useCounter')
 
   const selectedHook = HOOKS.find((hook) => hook.id === selectedHookId) ?? HOOKS[0]
@@ -52,27 +60,12 @@ export function HookExplorer({ theme, toggleTheme }: HookExplorerProps) {
   return (
     <Layout
       header={
-        <div className="header-inner">
-          <div>
-            <h1>My React Hooks</h1>
-            <p className="header-subtitle">
-              Small, focused hooks for learning and experiments.
-            </p>
-          </div>
-          <button
-            type="button"
-            className="theme-toggle"
-            onClick={toggleTheme}
-            aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-          >
-            <span className="theme-toggle-icon" aria-hidden="true">
-              {theme === 'dark' ? '☾' : '☼'}
-            </span>
-            <span className="theme-toggle-label">
-              {theme === 'dark' ? 'Dark' : 'Light'}
-            </span>
-          </button>
-        </div>
+        <AppHeader
+          theme={theme}
+          toggleTheme={toggleTheme}
+          activePage={activePage}
+          onNavigate={onNavigate}
+        />
       }
       sidebar={
         <nav className="hook-list">

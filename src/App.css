@@ -28,7 +28,36 @@
   font-size: 0.95rem;
 }
 
+.header-nav {
+  margin-top: 0.75rem;
+  display: inline-flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.header-nav-item {
+  font-size: 0.85rem;
+  padding-inline: 0.75rem;
+  padding-block: 0.3rem;
+  border-radius: 999px;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.header-nav-item:hover {
+  background-color: var(--accent-soft);
+}
+
+.header-nav-item.is-active {
+  border-color: var(--accent);
+  background-color: var(--accent-soft-strong);
+}
+
 .app-content {
+  display: block;
+}
+
+.app-content.app-content--with-sidebar {
   display: grid;
   grid-template-columns: minmax(220px, 280px) minmax(0, 1fr);
   gap: 1rem;
@@ -42,6 +71,48 @@
 
 .app-main {
   padding: 1.25rem 1.5rem;
+}
+
+.app-main.app-main--full {
+  padding-inline: 0;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+  max-width: 720px;
+}
+
+.page-header h2 {
+  margin: 0 0 0.35rem;
+}
+
+.page-header p {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.98rem;
+}
+
+.page-content section h3 {
+  margin: 0 0 0.35rem;
+  font-size: 1.03rem;
+}
+
+.page-content section ul {
+  margin: 0.15rem 0 0;
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.page-content section ul ul {
+  margin-top: 0.3rem;
+}
+
+.page-content li {
+  font-size: 0.95rem;
 }
 
 .hook-list {
@@ -339,7 +410,7 @@
     padding: 1rem;
   }
 
-  .app-content {
+  .app-content.app-content--with-sidebar {
     grid-template-columns: minmax(0, 1fr);
   }
 }
