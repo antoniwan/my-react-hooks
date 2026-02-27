@@ -150,6 +150,42 @@ export function RoadmapPage({
             </li>
           </ul>
         </section>
+
+        <section>
+          <h3>Hard mode experiments</h3>
+          <ul>
+            <li>
+              <strong>Infinite product lists with cursor pagination.</strong> A{' '}
+              <code>useInfiniteProducts</code> hook that manages GraphQL
+              cursor-based pagination, merging pages, preventing duplicate
+              items, and handling “load more” vs. infinite scroll.
+            </li>
+            <li>
+              <strong>Optimistic queues for mutations.</strong> A{' '}
+              <code>useOptimisticQueue</code> hook that can batch cart or
+              wishlist mutations, retry failed items, and reconcile with the
+              server when the user jumps between devices or tabs.
+            </li>
+            <li>
+              <strong>Real-time order tracking.</strong> Hooks like{' '}
+              <code>useOrderStatus</code> that combine GraphQL subscriptions,
+              polling fallbacks, and local cache updates for order timelines.
+            </li>
+            <li>
+              <strong>Offline-first cart and checkout.</strong> A{' '}
+              <code>useOfflineCartSync</code> hook that lets users add to cart
+              and begin checkout while offline, then syncs back via GraphQL when
+              connectivity returns (handling conflicts and duplicates).
+            </li>
+            <li>
+              <strong>Security- and compliance-aware flows.</strong> Hooks such
+              as <code>usePaymentSecurity</code> or{' '}
+              <code>useAddressValidation</code> that coordinate external
+              PCI-compliant payment UIs or address validation services while
+              keeping React code clean.
+            </li>
+          </ul>
+        </section>
       </article>
     </Layout>
   )
