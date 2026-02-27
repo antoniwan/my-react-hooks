@@ -10,14 +10,15 @@ export function useScrollDirection(options: Options = {}) {
   const { threshold = 8 } = options
 
   const [direction, setDirection] = useState<ScrollDirection>('none')
-  const [scrollY, setScrollY] = useState(0)
+  const [scrollY, setScrollY] = useState(() =>
+    typeof window === 'undefined' ? 0 : window.scrollY,
+  )
   const lastYRef = useRef(0)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
 
     lastYRef.current = window.scrollY
-    setScrollY(window.scrollY)
 
     const handleScroll = () => {
       const currentY = window.scrollY

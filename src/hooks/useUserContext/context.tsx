@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useMemo, type ReactNode } from 'react'
 import {
   type InternalState,
@@ -44,5 +45,7 @@ export function useUserContext(options?: UserContextOptions): UserContext {
     return contextValue
   }
 
+  // We intentionally fall back to the internal hook when no provider is present.
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   return useUserContextInternal(options)
 }

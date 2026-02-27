@@ -129,6 +129,8 @@ function useClientLanguage(enabled: boolean | undefined): string {
       navigator.language ||
       'en'
 
+    // We intentionally update language once on mount based on the browser settings.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setLanguage(next)
   }, [enabled])
 
@@ -190,6 +192,8 @@ function useSessionCount(enabled: boolean | undefined): {
 
   useEffect(() => {
     if (!enabled) {
+      // We intentionally derive the loading flag from the enabled option on mount.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setLoading(false)
       return
     }
@@ -216,7 +220,7 @@ function useSessionCount(enabled: boolean | undefined): {
       window.localStorage.setItem(SESSION_PAGE_LOAD_KEY, SESSION_PAGE_LOAD_ID)
       setSessionCount(next)
       setLoading(false)
-    } catch (err) {
+    } catch {
       setError('Failed to access localStorage for session count')
       setSessionCount(0)
       setLoading(false)
