@@ -8,7 +8,8 @@ export function ScrollDirectionDemo() {
       <div className="hook-demo-header">
         <h2>useScrollDirection</h2>
         <p className="hook-demo-description">
-          Detects scroll direction and basic position (top/bottom) for scroll-aware UI.
+          Detects scroll direction and basic position (top/bottom) for
+          scroll-aware UI.
         </p>
       </div>
 
@@ -24,4 +25,3 @@ export function ScrollDirectionDemo() {
     </div>
   )
 }
-

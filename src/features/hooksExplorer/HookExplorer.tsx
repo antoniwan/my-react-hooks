@@ -27,25 +27,32 @@ export function HookExplorer({
   activePage,
   onNavigate,
 }: HookExplorerProps) {
-  const [selectedHookId, setSelectedHookId] = useState<string>(HOOKS[0]?.id ?? 'useCounter')
+  const [selectedHookId, setSelectedHookId] = useState<string>(
+    HOOKS[0]?.id ?? 'useCounter',
+  )
 
-  const selectedHook = HOOKS.find((hook) => hook.id === selectedHookId) ?? HOOKS[0]
+  const selectedHook =
+    HOOKS.find(hook => hook.id === selectedHookId) ?? HOOKS[0]
   const categories = Array.from(
     new Map(HOOKS.map(hook => [hook.category, hook.category])).keys(),
   )
 
-  const { value: storedCategory, setValue: setStoredCategory } = useLocalStorage<string | null>(
-    'hookExplorer:openCategory',
-    categories[0] ?? null,
-  )
+  const { value: storedCategory, setValue: setStoredCategory } =
+    useLocalStorage<string | null>(
+      'hookExplorer:openCategory',
+      categories[0] ?? null,
+    )
 
-  const { openItem: openCategory, isOpen: isCategoryOpen, toggle: toggleCategory } =
-    useAccordion(categories, {
-      initialItem:
-        storedCategory && categories.includes(storedCategory)
-          ? storedCategory
-          : categories[0] ?? null,
-    })
+  const {
+    openItem: openCategory,
+    isOpen: isCategoryOpen,
+    toggle: toggleCategory,
+  } = useAccordion(categories, {
+    initialItem:
+      storedCategory && categories.includes(storedCategory)
+        ? storedCategory
+        : (categories[0] ?? null),
+  })
 
   useEffect(() => {
     if (!categories.length) return
@@ -70,38 +77,51 @@ export function HookExplorer({
       sidebar={
         <nav className="hook-list">
           <h2 className="hook-list-title">Hooks</h2>
-          {categories.map((category) => {
+          {categories.map(category => {
             const open = isCategoryOpen(category)
 
             return (
               <section key={category} className="hook-list-section">
                 <button
                   type="button"
-                  className={open ? 'hook-list-section-header is-open' : 'hook-list-section-header'}
+                  className={
+                    open
+                      ? 'hook-list-section-header is-open'
+                      : 'hook-list-section-header'
+                  }
                   onClick={() => toggleCategory(category)}
                   aria-expanded={open}
                 >
-                  <span className="hook-list-section-chevron" aria-hidden="true">
+                  <span
+                    className="hook-list-section-chevron"
+                    aria-hidden="true"
+                  >
                     {open ? '▾' : '▸'}
                   </span>
                   <span className="hook-list-section-title">{category}</span>
                 </button>
                 {open && (
                   <ul>
-                    {HOOKS.filter((hook) => hook.category === category).map((hook) => (
-                      <li key={hook.id}>
-                        <button
-                          type="button"
-                          className={
-                            hook.id === selectedHookId ? 'hook-list-item is-active' : 'hook-list-item'
-                          }
-                          onClick={() => setSelectedHookId(hook.id)}
-                        >
-                          <span className="hook-name">{hook.name}</span>
-                          <span className="hook-description">{hook.description}</span>
-                        </button>
-                      </li>
-                    ))}
+                    {HOOKS.filter(hook => hook.category === category).map(
+                      hook => (
+                        <li key={hook.id}>
+                          <button
+                            type="button"
+                            className={
+                              hook.id === selectedHookId
+                                ? 'hook-list-item is-active'
+                                : 'hook-list-item'
+                            }
+                            onClick={() => setSelectedHookId(hook.id)}
+                          >
+                            <span className="hook-name">{hook.name}</span>
+                            <span className="hook-description">
+                              {hook.description}
+                            </span>
+                          </button>
+                        </li>
+                      ),
+                    )}
                   </ul>
                 )}
               </section>
@@ -123,4 +143,3 @@ export function HookExplorer({
     </Layout>
   )
 }
-

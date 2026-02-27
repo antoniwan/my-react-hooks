@@ -32,7 +32,7 @@ This project is a small set of example hooks. The goal is to keep the code clear
 - **Guard against non‑browser environments**  
   Hooks that use `window`, `document`, or `navigator` check for their presence first. This avoids crashes under SSR or during static builds.
 
-- **Be explicit about persistence**  
+- **Be explicit about persistence**
   - `useLocalStorage` is the generic hook for “state mirrored into `localStorage`”. It is used where the only job is to persist simple state (for example, the open section in the hook explorer).
   - Hooks with extra domain behavior, like `useTheme`, are allowed to talk to `localStorage` directly so they can also read system preferences and update the DOM attribute without hiding work inside a generic helper.
 
@@ -52,4 +52,3 @@ This project is a small set of example hooks. The goal is to keep the code clear
 
 - **Persist small UI preferences**  
   The currently open accordion section is stored via `useLocalStorage`, so the UI remembers where you left off across reloads. This is a small, concrete example of using hooks to manage UX details without adding a state management library.
-

@@ -8,7 +8,8 @@ export function SiteMetaDemo() {
       <div className="hook-demo-header">
         <h2>useSiteMeta</h2>
         <p className="hook-demo-description">
-          Provides site metadata such as version and GitHub repository URL from build-time config.
+          Provides site metadata such as version and GitHub repository URL from
+          build-time config.
         </p>
       </div>
 
@@ -24,4 +25,3 @@ export function SiteMetaDemo() {
     </div>
   )
 }
-

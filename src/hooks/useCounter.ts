@@ -18,11 +18,11 @@ export function useCounter(options: UseCounterOptions = {}) {
   }
 
   const increment = () => {
-    setValue((current) => clamp(current + step))
+    setValue(current => clamp(current + step))
   }
 
   const decrement = () => {
-    setValue((current) => clamp(current - step))
+    setValue(current => clamp(current - step))
   }
 
   const reset = () => {

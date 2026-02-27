@@ -40,9 +40,9 @@ export function useScrollDirection(options: Options = {}) {
   const atTop = scrollY <= 0
   const atBottom =
     typeof window !== 'undefined' && typeof document !== 'undefined'
-      ? Math.ceil(scrollY + window.innerHeight) >= document.documentElement.scrollHeight
+      ? Math.ceil(scrollY + window.innerHeight) >=
+        document.documentElement.scrollHeight
       : false
 
   return { direction, scrollY, atTop, atBottom }
 }
-

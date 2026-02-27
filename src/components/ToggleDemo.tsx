@@ -1,14 +1,17 @@
 import { useToggle } from '../hooks/useToggle'
 
 export function ToggleDemo() {
-  const { value, toggle, setTrue, setFalse } = useToggle({ initialValue: false })
+  const { value, toggle, setTrue, setFalse } = useToggle({
+    initialValue: false,
+  })
 
   return (
     <div className="hook-demo">
       <div className="hook-demo-header">
         <h2>useToggle</h2>
         <p className="hook-demo-description">
-          Simple boolean state with helpers for toggling, forcing on, and forcing off.
+          Simple boolean state with helpers for toggling, forcing on, and
+          forcing off.
         </p>
       </div>
 
@@ -30,4 +33,3 @@ export function ToggleDemo() {
     </div>
   )
 }
-

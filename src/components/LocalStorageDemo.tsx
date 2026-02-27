@@ -5,7 +5,10 @@ const DEFAULT_STORAGE_KEY =
   import.meta.env.VITE_LOCAL_STORAGE_DEMO_KEY ?? 'my-react-hooks:message'
 
 export function LocalStorageDemo() {
-  const { value, setValue, remove } = useLocalStorage<string>(DEFAULT_STORAGE_KEY, '')
+  const { value, setValue, remove } = useLocalStorage<string>(
+    DEFAULT_STORAGE_KEY,
+    '',
+  )
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value)
@@ -16,7 +19,8 @@ export function LocalStorageDemo() {
       <div className="hook-demo-header">
         <h2>useLocalStorage</h2>
         <p className="hook-demo-description">
-          State that is kept in sync with <code>localStorage</code>, using a configurable key.
+          State that is kept in sync with <code>localStorage</code>, using a
+          configurable key.
         </p>
       </div>
 
@@ -40,4 +44,3 @@ export function LocalStorageDemo() {
     </div>
   )
 }
-

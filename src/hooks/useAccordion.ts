@@ -5,19 +5,17 @@ export function useAccordion<T extends string | number>(
   options?: { initialItem?: T | null },
 ) {
   const computedInitial =
-    typeof options?.initialItem !== 'undefined' ? options.initialItem : items[0] ?? null
+    typeof options?.initialItem !== 'undefined'
+      ? options.initialItem
+      : (items[0] ?? null)
 
   const [openItem, setOpenItem] = useState<T | null>(computedInitial)
 
-  const isOpen = useCallback(
-    (id: T) => openItem === id,
-    [openItem],
-  )
+  const isOpen = useCallback((id: T) => openItem === id, [openItem])
 
   const toggle = useCallback((id: T) => {
-    setOpenItem((current) => (current === id ? current : id))
+    setOpenItem(current => (current === id ? current : id))
   }, [])
 
   return { openItem, isOpen, toggle }
 }
-

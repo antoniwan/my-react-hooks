@@ -9,7 +9,12 @@ type AppHeaderProps = {
   onNavigate: (page: AppPage) => void
 }
 
-export function AppHeader({ theme, toggleTheme, activePage, onNavigate }: AppHeaderProps) {
+export function AppHeader({
+  theme,
+  toggleTheme,
+  activePage,
+  onNavigate,
+}: AppHeaderProps) {
   return (
     <div className="header-inner">
       <div>
@@ -20,7 +25,11 @@ export function AppHeader({ theme, toggleTheme, activePage, onNavigate }: AppHea
         <nav className="header-nav" aria-label="Primary">
           <button
             type="button"
-            className={activePage === 'hooks' ? 'header-nav-item is-active' : 'header-nav-item'}
+            className={
+              activePage === 'hooks'
+                ? 'header-nav-item is-active'
+                : 'header-nav-item'
+            }
             onClick={() => onNavigate('hooks')}
             aria-current={activePage === 'hooks' ? 'page' : undefined}
           >
@@ -29,7 +38,9 @@ export function AppHeader({ theme, toggleTheme, activePage, onNavigate }: AppHea
           <button
             type="button"
             className={
-              activePage === 'principles' ? 'header-nav-item is-active' : 'header-nav-item'
+              activePage === 'principles'
+                ? 'header-nav-item is-active'
+                : 'header-nav-item'
             }
             onClick={() => onNavigate('principles')}
             aria-current={activePage === 'principles' ? 'page' : undefined}
@@ -38,7 +49,11 @@ export function AppHeader({ theme, toggleTheme, activePage, onNavigate }: AppHea
           </button>
           <button
             type="button"
-            className={activePage === 'roadmap' ? 'header-nav-item is-active' : 'header-nav-item'}
+            className={
+              activePage === 'roadmap'
+                ? 'header-nav-item is-active'
+                : 'header-nav-item'
+            }
             onClick={() => onNavigate('roadmap')}
             aria-current={activePage === 'roadmap' ? 'page' : undefined}
           >
@@ -50,14 +65,17 @@ export function AppHeader({ theme, toggleTheme, activePage, onNavigate }: AppHea
         type="button"
         className="theme-toggle"
         onClick={toggleTheme}
-        aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+        aria-label={
+          theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
+        }
       >
         <span className="theme-toggle-icon" aria-hidden="true">
           {theme === 'dark' ? '☾' : '☼'}
         </span>
-        <span className="theme-toggle-label">{theme === 'dark' ? 'Dark' : 'Light'}</span>
+        <span className="theme-toggle-label">
+          {theme === 'dark' ? 'Dark' : 'Light'}
+        </span>
       </button>
     </div>
   )
 }
-

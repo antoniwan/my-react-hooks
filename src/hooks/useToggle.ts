@@ -9,7 +9,7 @@ export function useToggle(options: UseToggleOptions = {}) {
   const [value, setValue] = useState(initialValue)
 
   const toggle = () => {
-    setValue((current) => !current)
+    setValue(current => !current)
   }
 
   const setTrue = () => {
@@ -27,4 +27,3 @@ export function useToggle(options: UseToggleOptions = {}) {
     setFalse,
   }
 }
-

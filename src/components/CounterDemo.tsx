@@ -1,14 +1,18 @@
 import { useCounter } from '../hooks/useCounter'
 
 export function CounterDemo() {
-  const { value, increment, decrement, reset } = useCounter({ initialValue: 0, step: 1 })
+  const { value, increment, decrement, reset } = useCounter({
+    initialValue: 0,
+    step: 1,
+  })
 
   return (
     <div className="hook-demo">
       <div className="hook-demo-header">
         <h2>useCounter</h2>
         <p className="hook-demo-description">
-          Basic numeric state with increment, decrement, reset, and optional min/max.
+          Basic numeric state with increment, decrement, reset, and optional
+          min/max.
         </p>
       </div>
 
@@ -28,4 +32,3 @@ export function CounterDemo() {
     </div>
   )
 }
-

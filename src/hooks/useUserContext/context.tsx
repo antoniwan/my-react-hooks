@@ -30,7 +30,11 @@ export function UserContextProvider({
     }
   }, [internal, initialValue])
 
-  return <UserContextReact.Provider value={value}>{children}</UserContextReact.Provider>
+  return (
+    <UserContextReact.Provider value={value}>
+      {children}
+    </UserContextReact.Provider>
+  )
 }
 
 export function useUserContext(options?: UserContextOptions): UserContext {
@@ -42,4 +46,3 @@ export function useUserContext(options?: UserContextOptions): UserContext {
 
   return useUserContextInternal(options)
 }
-

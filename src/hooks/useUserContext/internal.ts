@@ -1,15 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 
 export interface UserContext {
-  geo:
-    | {
-        country: string
-        region: string
-        city: string
-        latitude?: number
-        longitude?: number
-      }
-    | null
+  geo: {
+    country: string
+    region: string
+    city: string
+    latitude?: number
+    longitude?: number
+  } | null
   timeOfDay: 'morning' | 'afternoon' | 'evening' | 'night'
   weather: { condition: string; temp: number; unit: 'C' | 'F' } | null
   language: string
@@ -104,9 +102,12 @@ function useTimeOfDay(): UserContext['timeOfDay'] {
   useEffect(() => {
     if (typeof window === 'undefined') return
 
-    const id = window.setInterval(() => {
-      setTimeOfDay(getInitialTimeOfDay())
-    }, 5 * 60 * 1000)
+    const id = window.setInterval(
+      () => {
+        setTimeOfDay(getInitialTimeOfDay())
+      },
+      5 * 60 * 1000,
+    )
 
     return () => {
       window.clearInterval(id)
@@ -231,16 +232,14 @@ async function getNativePosition(): Promise<GeolocationPosition | null> {
   }
 
   try {
-    const position = await new Promise<GeolocationPosition>((resolve, reject) => {
-      navigator.geolocation.getCurrentPosition(
-        resolve,
-        reject,
-        {
+    const position = await new Promise<GeolocationPosition>(
+      (resolve, reject) => {
+        navigator.geolocation.getCurrentPosition(resolve, reject, {
           maximumAge: 5 * 60 * 1000,
           timeout: 10_000,
-        },
-      )
-    })
+        })
+      },
+    )
 
     return position
   } catch {
@@ -264,9 +263,11 @@ function mapIpapiToGeo(data: IpapiResponse | null): GeoInternal {
   }
 }
 
-function useGeoFromIp(
-  options: UserContextOptions | undefined,
-): { geo: GeoInternal; loading: boolean; error: string | null } {
+function useGeoFromIp(options: UserContextOptions | undefined): {
+  geo: GeoInternal
+  loading: boolean
+  error: string | null
+} {
   const [geo, setGeo] = useState<GeoInternal>(() => geoCache ?? null)
   const [loading, setLoading] = useState<boolean>(() =>
     options?.enableGeo === false ? false : geoCache === undefined,
@@ -358,7 +359,9 @@ function useGeoFromIp(
         if ((err as Error).name === 'AbortError') return
 
         const message =
-          err instanceof Error ? err.message : 'Unknown error while fetching geo'
+          err instanceof Error
+            ? err.message
+            : 'Unknown error while fetching geo'
         const friendly = `Failed to load geo: ${message}`
 
         geoCache = null
@@ -407,7 +410,9 @@ function useWeatherForGeo(
   const [loading, setLoading] = useState<boolean>(() =>
     options?.enableWeather === false ? false : weatherCache === undefined,
   )
-  const [error, setError] = useState<string | null>(() => weatherErrorCache ?? null)
+  const [error, setError] = useState<string | null>(
+    () => weatherErrorCache ?? null,
+  )
 
   useEffect(() => {
     if (options?.enableWeather === false) {
@@ -420,7 +425,11 @@ function useWeatherForGeo(
       return
     }
 
-    if (!geo || typeof geo.latitude !== 'number' || typeof geo.longitude !== 'number') {
+    if (
+      !geo ||
+      typeof geo.latitude !== 'number' ||
+      typeof geo.longitude !== 'number'
+    ) {
       setLoading(false)
       return
     }
@@ -456,7 +465,9 @@ function useWeatherForGeo(
         })
 
         if (!response.ok) {
-          throw new Error(`weather request failed with status ${response.status}`)
+          throw new Error(
+            `weather request failed with status ${response.status}`,
+          )
         }
 
         const data = (await response.json()) as {
@@ -484,7 +495,9 @@ function useWeatherForGeo(
         if ((err as Error).name === 'AbortError') return
 
         const message =
-          err instanceof Error ? err.message : 'Unknown error while fetching weather'
+          err instanceof Error
+            ? err.message
+            : 'Unknown error while fetching weather'
         const friendly = `Failed to load weather: ${message}`
 
         weatherCache = null
@@ -509,23 +522,28 @@ function useWeatherForGeo(
     return () => {
       controller.abort()
     }
-  }, [geo, options?.enableWeather, options?.weatherApiKey, options?.weatherUnit])
+  }, [
+    geo,
+    options?.enableWeather,
+    options?.weatherApiKey,
+    options?.weatherUnit,
+  ])
 
   return { weather, loading, error }
 }
 
-export function useUserContextInternal(options?: UserContextOptions): InternalState {
+export function useUserContextInternal(
+  options?: UserContextOptions,
+): InternalState {
   const timeOfDay = useTimeOfDay()
   const language = useClientLanguage(options?.enableLanguage ?? true)
   const device = useDeviceType(options?.enableDevice ?? true)
-  const { sessionCount, loading: loadingSession, error: sessionError } = useSessionCount(
-    options?.enableSession ?? true,
-  )
   const {
-    geo,
-    loading: loadingGeo,
-    error: geoError,
-  } = useGeoFromIp(options)
+    sessionCount,
+    loading: loadingSession,
+    error: sessionError,
+  } = useSessionCount(options?.enableSession ?? true)
+  const { geo, loading: loadingGeo, error: geoError } = useGeoFromIp(options)
   const {
     weather,
     loading: loadingWeather,
@@ -573,4 +591,3 @@ export function useUserContextInternal(options?: UserContextOptions): InternalSt
 
   return base
 }
-

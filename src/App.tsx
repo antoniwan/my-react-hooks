@@ -14,7 +14,9 @@ function App() {
   const { direction, atTop, atBottom } = useScrollDirection({ threshold: 10 })
   const { version, repoUrl } = useSiteMeta()
 
-  const [activePage, setActivePage] = useState<'hooks' | 'principles' | 'roadmap'>('hooks')
+  const [activePage, setActivePage] = useState<
+    'hooks' | 'principles' | 'roadmap'
+  >('hooks')
 
   const showFooter = atBottom || atTop || direction === 'up'
 

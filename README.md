@@ -85,4 +85,3 @@ Some hooks use optional environment configuration. See `.env.example` for the av
 ### Approach and principles
 
 For a short description of how the hooks are structured and why certain choices were made, see [PRINCIPLES.md](./PRINCIPLES.md).
-

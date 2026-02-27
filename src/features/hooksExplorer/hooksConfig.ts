@@ -10,13 +10,15 @@ export const HOOKS: HookExample[] = [
   {
     id: 'useCounter',
     name: 'useCounter',
-    description: 'Numeric state with increment, decrement, reset, and optional bounds.',
+    description:
+      'Numeric state with increment, decrement, reset, and optional bounds.',
     category: 'State & utilities',
   },
   {
     id: 'useToggle',
     name: 'useToggle',
-    description: 'Boolean state with helpers for toggling, turning on, and turning off.',
+    description:
+      'Boolean state with helpers for toggling, turning on, and turning off.',
     category: 'State & utilities',
   },
   {
@@ -36,19 +38,22 @@ export const HOOKS: HookExample[] = [
   {
     id: 'useTheme',
     name: 'useTheme',
-    description: 'Light/dark theme toggle with persistence and system preference support.',
+    description:
+      'Light/dark theme toggle with persistence and system preference support.',
     category: 'Browser & environment',
   },
   {
     id: 'useScrollDirection',
     name: 'useScrollDirection',
-    description: 'Small helper for scroll-aware UI, like showing/hiding a footer.',
+    description:
+      'Small helper for scroll-aware UI, like showing/hiding a footer.',
     category: 'Browser & environment',
   },
   {
     id: 'useSiteMeta',
     name: 'useSiteMeta',
-    description: 'Reads site metadata like version and repo URL from build-time config.',
+    description:
+      'Reads site metadata like version and repo URL from build-time config.',
     category: 'Browser & environment',
   },
 
@@ -61,4 +66,3 @@ export const HOOKS: HookExample[] = [
     category: 'Context & aggregates',
   },
 ]
-

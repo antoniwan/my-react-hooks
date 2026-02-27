@@ -16,8 +16,17 @@ export function ContextSignalDemo({ weatherApiKey }: ContextSignalDemoProps) {
     includeMeta: true,
   })
 
-  const { geo, timeOfDay, weather, language, sessionCount, device, isLoading, error, meta } =
-    context
+  const {
+    geo,
+    timeOfDay,
+    weather,
+    language,
+    sessionCount,
+    device,
+    isLoading,
+    error,
+    meta,
+  } = context
 
   const hasWeatherConfigured = Boolean(weatherApiKey)
   const locationLabel = geo
@@ -36,8 +45,8 @@ export function ContextSignalDemo({ weatherApiKey }: ContextSignalDemoProps) {
       <div className="hook-demo-header">
         <h2>useUserContext</h2>
         <p className="hook-demo-description">
-          Aggregates geo, time of day, language, device, session count, and optional
-          weather into a single context object.
+          Aggregates geo, time of day, language, device, session count, and
+          optional weather into a single context object.
         </p>
       </div>
 
@@ -45,13 +54,18 @@ export function ContextSignalDemo({ weatherApiKey }: ContextSignalDemoProps) {
         <div className="context-summary-pills">
           <span
             className={
-              isLoading ? 'context-pill context-pill--neutral' : 'context-pill context-pill--success'
+              isLoading
+                ? 'context-pill context-pill--neutral'
+                : 'context-pill context-pill--success'
             }
           >
             {isLoading ? 'Loading signals…' : 'Signals ready'}
           </span>
           {error && (
-            <span className="context-pill context-pill--error" aria-live="polite">
+            <span
+              className="context-pill context-pill--error"
+              aria-live="polite"
+            >
               Error
             </span>
           )}
@@ -98,16 +112,12 @@ export function ContextSignalDemo({ weatherApiKey }: ContextSignalDemoProps) {
 
         <div className="context-signal-row">
           <span className="context-signal-label">Geo</span>
-          <span className="context-signal-value">
-            {locationLabel}
-          </span>
+          <span className="context-signal-value">{locationLabel}</span>
         </div>
 
         <div className="context-signal-row">
           <span className="context-signal-label">Weather</span>
-          <span className="context-signal-value">
-            {weatherLabel}
-          </span>
+          <span className="context-signal-value">{weatherLabel}</span>
         </div>
 
         <div className="context-signal-row">
@@ -127,4 +137,3 @@ export function ContextSignalDemo({ weatherApiKey }: ContextSignalDemoProps) {
     </div>
   )
 }
-

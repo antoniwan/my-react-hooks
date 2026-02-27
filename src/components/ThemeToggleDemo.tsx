@@ -6,14 +6,16 @@ type ThemeToggleDemoProps = {
 }
 
 export function ThemeToggleDemo({ theme, toggleTheme }: ThemeToggleDemoProps) {
-  const label = theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
+  const label =
+    theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'
 
   return (
     <div className="hook-demo">
       <div className="hook-demo-header">
         <h2>useTheme</h2>
         <p className="hook-demo-description">
-          Light/dark theme state stored in localStorage and synced with the document.
+          Light/dark theme state stored in localStorage and synced with the
+          document.
         </p>
       </div>
 
@@ -27,4 +29,3 @@ export function ThemeToggleDemo({ theme, toggleTheme }: ThemeToggleDemoProps) {
     </div>
   )
 }
-
