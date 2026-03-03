@@ -32,9 +32,9 @@ export function PrinciplesPage({
         <header className="page-header">
           <h2>Approach and principles</h2>
           <p>
-            This project is a small set of example hooks. The goal is to keep
-            the code clear enough to read in one sitting, while still showing
-            realistic patterns you can reuse.
+            This is my small playground of example hooks and other web things.
+            I try to keep the code clear enough to read in one sitting, while
+            still showing realistic patterns you can reuse.
           </p>
         </header>
 

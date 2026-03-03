@@ -78,7 +78,7 @@ export function ContextSignalDemo({ weatherApiKey }: ContextSignalDemoProps) {
         <p className="context-summary-text">
           {geo
             ? `Looks like you're in ${locationLabel}. It's currently ${timeOfDay}.`
-            : 'We will infer your location and other signals as the data loads.'}
+            : 'This demo will infer your location and other signals as the data loads.'}
         </p>
       </div>
 
