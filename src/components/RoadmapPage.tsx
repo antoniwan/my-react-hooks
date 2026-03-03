@@ -42,9 +42,11 @@ export function RoadmapPage({
           <h3>Fundamental hooks to build first</h3>
           <ul>
             <li>
-              <strong>State basics.</strong> <code>useToggle</code>,{' '}
-              <code>useCounter</code>, <code>useInput</code> for plain local
-              state and controlled inputs.
+              <strong>State basics.</strong>{' '}
+              <del>
+                <code>useToggle</code>, <code>useCounter</code>
+              </del>
+              , <code>useInput</code> for plain local state and controlled inputs.
             </li>
             <li>
               <strong>Time-based hooks.</strong> <code>useTimeout</code> and{' '}
@@ -52,8 +54,11 @@ export function RoadmapPage({
             </li>
             <li>
               <strong>Lifecycle-ish hooks.</strong> <code>useIsMounted</code>,{' '}
-              <code>usePrevious</code>, and a simple <code>useLogger</code> to
-              understand effects, refs, and cleanup.
+              <del>
+                <code>usePrevious</code>
+              </del>
+              , and a simple <code>useLogger</code> to understand effects, refs,
+              and cleanup.
             </li>
           </ul>
         </section>
@@ -124,8 +129,11 @@ export function RoadmapPage({
           <h3>State persistence & caching</h3>
           <ul>
             <li>
-              <strong>Client storage.</strong> <code>useLocalStorage</code> and{' '}
-              <code>useSessionStorage</code> to persist user preferences.
+              <strong>Client storage.</strong>{' '}
+              <del>
+                <code>useLocalStorage</code>
+              </del>{' '}
+              and <code>useSessionStorage</code> to persist user preferences.
             </li>
             <li>
               <strong>Simple cache.</strong> A <code>useQueryCache</code> style
