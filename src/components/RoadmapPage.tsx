@@ -44,9 +44,9 @@ export function RoadmapPage({
             <li>
               <strong>State basics.</strong>{' '}
               <del>
-                <code>useToggle</code>, <code>useCounter</code>
-              </del>
-              , <code>useInput</code> for plain local state and controlled inputs.
+                <code>useToggle</code>, <code>useCounter</code>, <code>useInput</code>
+              </del>{' '}
+              for plain local state and controlled inputs.
             </li>
             <li>
               <strong>Time-based hooks.</strong> <code>useTimeout</code> and{' '}

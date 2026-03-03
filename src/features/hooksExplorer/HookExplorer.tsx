@@ -12,6 +12,7 @@ import { ThemeToggleDemo } from '../../components/ThemeToggleDemo'
 import { ScrollDirectionDemo } from '../../components/ScrollDirectionDemo'
 import { SiteMetaDemo } from '../../components/SiteMetaDemo'
 import { ContextSignalDemo } from '../../components/ContextSignalDemo'
+import { InputDemo } from '../../components/InputDemo'
 import { HOOKS } from './hooksConfig'
 
 type HookExplorerProps = {
@@ -133,6 +134,7 @@ export function HookExplorer({
       {selectedHook?.id === 'useCounter' && <CounterDemo />}
       {selectedHook?.id === 'useToggle' && <ToggleDemo />}
       {selectedHook?.id === 'useLocalStorage' && <LocalStorageDemo />}
+      {selectedHook?.id === 'useInput' && <InputDemo />}
       {selectedHook?.id === 'usePrevious' && <PreviousValueDemo />}
       {selectedHook?.id === 'useTheme' && (
         <ThemeToggleDemo theme={theme} toggleTheme={toggleTheme} />

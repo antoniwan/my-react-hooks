@@ -30,10 +30,10 @@ export function LocalStorageDemo() {
 
       <input
         type="text"
+        className="hook-input"
         value={value}
         onChange={handleChange}
         placeholder="Type a message, then reload the page…"
-        style={{ maxWidth: '100%', padding: '0.4rem 0.5rem' }}
       />
 
       <div className="counter-demo-actions">

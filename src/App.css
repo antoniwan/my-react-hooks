@@ -176,6 +176,41 @@
   gap: 1.25rem;
 }
 
+.hook-demo-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.hook-demo-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.hook-input,
+.hook-textarea {
+  width: 100%;
+  max-width: 480px;
+  padding: 0.45rem 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-elevated);
+  color: inherit;
+  font: inherit;
+}
+
+.hook-input::placeholder,
+.hook-textarea::placeholder {
+  color: var(--text-muted);
+}
+
+.hook-input:focus-visible,
+.hook-textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-color: var(--accent);
+}
+
 .hook-demo-header h2 {
   margin: 0;
   font-size: 1.3rem;
@@ -185,6 +220,11 @@
   margin: 0.25rem 0 0;
   color: var(--text-muted);
   font-size: 0.95rem;
+}
+
+.hook-demo-summary {
+  font-size: 0.9rem;
+  color: var(--text-muted);
 }
 
 .hook-list-section {

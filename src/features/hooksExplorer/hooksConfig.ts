@@ -33,6 +33,12 @@ export const HOOKS: HookExample[] = [
     description: 'Synchronize a piece of state with localStorage using JSON.',
     category: 'State & utilities',
   },
+  {
+    id: 'useInput',
+    name: 'useInput',
+    description: 'Controlled input state for form fields.',
+    category: 'State & utilities',
+  },
 
   // Browser & environment
   {
